@@ -12,8 +12,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * @author Henry
- * @date 2017/7/13
+ * @author ${author}
+ * @date ${date}
  */
 @RestController
 @RequestMapping("/api")
@@ -21,7 +21,7 @@ public class ${className} {
     @Autowired
     private ${entityName}Mapper ${entityName?uncap_first}Mapper;
 
-    @GetMapping("/${simpleName?uncap_first}s")
+    @GetMapping("/${simpleNamePlural?uncap_first}")
     public Result list(
             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
             @RequestParam(value = "pageSize", required = false, defaultValue = "20") Integer pageSize
@@ -33,7 +33,7 @@ public class ${className} {
         return ResultUtil.success(pageModel);
     }
 
-    @GetMapping("/${simpleName?uncap_first}s/{id}")
+    @GetMapping("/${simpleNamePlural?uncap_first}/{id}")
     public Result show(@PathVariable("id") Integer id) {
         Validate.idValid("id", id);
         ${entityName} ${simpleName?uncap_first} = ${entityName?uncap_first}Mapper.selectByPrimaryKey(id);
@@ -41,7 +41,7 @@ public class ${className} {
         return ResultUtil.success(${simpleName?uncap_first});
     }
 
-    @PostMapping("/${simpleName?uncap_first}s")
+    @PostMapping("/${simpleNamePlural?uncap_first}")
     public Result create(@Valid @RequestBody ${entityName} ${entityName?uncap_first}, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Validate.isRecord(true, bindingResult.getFieldError().getDefaultMessage());
@@ -52,7 +52,7 @@ public class ${className} {
         return ResultUtil.success(${simpleName?uncap_first});
     }
 
-    @PutMapping("/${simpleName?uncap_first}s/{id}")
+    @PutMapping("/${simpleNamePlural?uncap_first}/{id}")
     public Result update(@PathVariable("id") Integer id, @Valid @RequestBody ${entityName} ${entityName?uncap_first}, BindingResult bindingResult) {
         Validate.idValid("id", id);
         if (bindingResult.hasErrors()) {
@@ -65,7 +65,7 @@ public class ${className} {
         return ResultUtil.success(${simpleName?uncap_first});
     }
 
-    @DeleteMapping("/${simpleName?uncap_first}s/{id}")
+    @DeleteMapping("/${simpleNamePlural?uncap_first}/{id}")
     public Result delete(@PathVariable("id") Integer id) {
         Validate.idValid("id", id);
         return ResultUtil.success(${entityName?uncap_first}Mapper.deleteByPrimaryKey(id));
