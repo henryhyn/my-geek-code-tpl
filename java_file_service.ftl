@@ -75,12 +75,12 @@ public class ${className}Impl implements ${className} {
         return ${entityName?uncap_first}Mapper.deleteByPrimaryKey(id);
     }
 
-    private List<${entityName}DTO> convert(List<${entityName}> poiDishList) {
-        return Optional.of(poiDishList)
+    private List<${entityName}DTO> convert(List<${entityName}> ${simpleName?uncap_first}List) {
+        return Optional.of(${simpleName?uncap_first}List)
                 .orElse(Collections.emptyList())
                 .stream()
                 .map(this::convert)
-                .filter(Objects::isNull)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
